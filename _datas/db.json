@@ -1,0 +1,28 @@
+{
+  "trainee": [
+    {
+      "id": 1,
+      "lastname": "ANDRÉ",
+      "firstname": "Anthony",
+      "email": "anthony-andre@test.fr",
+      "phoneNumber": "06 22 22 22 22",
+      "birthdate": "1992-04-28T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "lastname": "STALLONE",
+      "firstname": "Silvester",
+      "email": "sly-stallone@rambo.com",
+      "phoneNumber": "06 15 15 15 15",
+      "birthdate": "1946-07-06T00:00:00.000Z"
+    },
+    {
+      "id": 123,
+      "lastname": "Pinot",
+      "firstname": "Thibaut",
+      "email": "thibaut.pinot@gmail.com",
+      "phoneNumber": "iuguyfui",
+      "birthdate": "1990-02-29"
+    }
+  ]
+}

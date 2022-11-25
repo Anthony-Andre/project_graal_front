@@ -1,0 +1,21 @@
+<div class="stagiaireCard" *ngIf="stagiaire">
+
+  <div class="outer-dialog">
+    <div class="inner-dialog">
+      <div appBubble [config]="bubbleConfig" class="initials">{{stagiaire | initials : {firstNameFirst: true, full:
+        true} }}</div>
+      <div class="infosCard">
+        <p>Lastname : {{stagiaire.getLastName()}}</p>
+        <p>Firstname : {{stagiaire.getFirstName()}}</p>
+        <p>Birthdate : {{stagiaire.getBirthDate()}}</p>
+        <p>Email : {{stagiaire.getEmail()}}</p>
+        <p>Phone number : {{stagiaire.getPhoneNumber()}}</p>
+      </div>
+
+      <button type="button" (click)="closeStagiaireCard()">Close</button>
+    </div>
+  </div>
+
+
+
+</div>

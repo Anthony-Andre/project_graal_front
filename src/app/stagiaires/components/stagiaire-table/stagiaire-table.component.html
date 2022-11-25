@@ -1,0 +1,52 @@
+<app-stagiaire-filter [filterDate]="stopDate" (onChangeFilter)="filterChanged($event)"></app-stagiaire-filter>
+
+<app-stagiaire-detail [hidden]="isDetailHidden$ | async" [stagiaire]=" selectedStagiaire">
+</app-stagiaire-detail>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>&nbsp;</th>
+      <th>Lastname</th>
+      <th>Firstname</th>
+      <th>Birthdate</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+
+
+  <tbody>
+    <ng-container *ngFor="let stagiaire of stagiaires">
+      <tr class="stagiaireLine" *ngIf="changeView(stagiaire)">
+
+        <td>
+          {{stagiaire.getId()}}
+        </td>
+        <td>
+          <span class="initials" appBubble [config]="bubbleConfig" (click)="onClick(stagiaire)">{{stagiaire |
+            initials : {firstNameFirst: true, full:
+            true} }}</span>
+        </td>
+        <td>
+          {{stagiaire.getLastName() | uppercase}}
+        </td>
+        <td>
+          {{stagiaire.getFirstName()}}
+        </td>
+        <td>
+          {{stagiaire.getBirthDate() | date: 'dd-MM-YYYY'}}
+        </td>
+        <td>
+          <button class="buttonDelete" type="button" (click)="onRemove(stagiaire)">X</button>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+
+  <tfoot>
+    <td colspan="4">Total number of trainees </td>
+    <td>{{stagiairesBeforeStopDate.length}}</td>
+  </tfoot>
+</table>
