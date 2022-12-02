@@ -40,7 +40,7 @@
           {{stagiaire.getBirthDate() | date: 'dd-MM-YYYY'}}
         </td>
         <td>
-          <button class="buttonDelete" type="button">🖊️</button>
+          <button class="buttonDelete" type="button" (click)="onUpdate(stagiaire)">🖊️</button>
         </td>
         <td>
           <button class="buttonDelete" type="button" (click)="onRemove(stagiaire)">X</button>
