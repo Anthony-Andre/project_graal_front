@@ -1,5 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Stagiaire } from 'src/app/core/models/stagiaire';
 
@@ -10,6 +11,7 @@ export class FormBuilderService {
 
   private form!: FormGroup;
   private stagiaire: Stagiaire = new Stagiaire();
+  private updateMode: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +26,13 @@ export class FormBuilderService {
     return this.form;
   }
 
-  public build(): FormBuilderService {
+  public build(stagiaire: Stagiaire): FormBuilderService {
+    this.stagiaire = stagiaire
+    if (stagiaire.getId() !== 0) {
+      this.updateMode = true;
+    }
+
+
     this.form = this.formBuilder.group({
       lastname: [
         this.stagiaire.getLastName(), // Default value,
@@ -56,6 +64,15 @@ export class FormBuilderService {
         this.stagiaire.getBirthDate() !== null ? this.stagiaire.getBirthDate() : ''
       ]
     });
+
+
+    // Ajoute un contrôle avec la valeur de l'id du Stagiaire 
+    // donc .. form.value vaudre {id: 1,...}
+
+    if (this.updateMode) {
+      const idControl: AbstractControl = new FormControl(this.stagiaire.getId());
+      this.form.addControl('id', idControl);
+    }
 
     return this; // To chain methods
   }

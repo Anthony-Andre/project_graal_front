@@ -73,8 +73,7 @@ export class StagiaireTableComponent implements OnInit {
   }
 
   public onUpdate(stagiaire: Stagiaire): void {
-    // this.router.navigate(['/', 'stagiaire', stagiaire.getId(), '/', 'update'])
-    console.log("On va mettre à jour le stagiaire ", stagiaire.getFirstName(), " ", stagiaire.getLastName())
+    this.router.navigate(['/', 'stagiaire', 'update', stagiaire.getId()])
   }
 
   public filterChanged(event: Date | null): void {

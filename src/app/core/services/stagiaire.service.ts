@@ -90,6 +90,26 @@ export class StagiaireService {
       );
   }
 
+  public update(stagiaire: Stagiaire): Observable<Stagiaire> {
+    return this.httpClient.put<Stagiaire>(
+      `${this.controllerBaseUrl}`,
+      stagiaire
+    )
+      .pipe(
+        take(1),
+        map((anyStagiaire: any) => {
+          const stagiaire: Stagiaire = new Stagiaire();
+          stagiaire.setId(anyStagiaire.id!);
+          stagiaire.setLastName(anyStagiaire.lastname);
+          stagiaire.setFirstName(anyStagiaire.firstname);
+          stagiaire.setBirthDate(new Date(anyStagiaire.birthdate));
+          stagiaire.setPhoneNumber(anyStagiaire.phoneNumber);
+          stagiaire.setEmail(anyStagiaire.email);
+          return stagiaire;
+        })
+      )
+  }
+
   public delete(stagiaire: Stagiaire): Observable<HttpResponse<any>> {
     // 1. call backend
     return this.httpClient.delete(

@@ -32,6 +32,10 @@ export class AppRoutingModule {
       component: StagiaireDetailComponent
     },
     {
+      path: 'stagiaire/update/:id',
+      component: StagiaireFormComponent
+    },
+    {
       path: '**', // Wild card (Redirige vers le home si l'url n'existe pas) - Toujours mettre en dernier
       redirectTo: 'home',
       pathMatch: 'full'
