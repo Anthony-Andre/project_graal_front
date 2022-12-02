@@ -1,7 +1,7 @@
 <app-stagiaire-filter [filterDate]="stopDate" (onChangeFilter)="filterChanged($event)"></app-stagiaire-filter>
 
-<app-stagiaire-detail [hidden]="isDetailHidden$ | async" [stagiaire]=" selectedStagiaire">
-</app-stagiaire-detail>
+<!-- <app-stagiaire-detail [hidden]="isDetailHidden$ | async" [stagiaire]=" selectedStagiaire">
+</app-stagiaire-detail> -->
 
 <table class="table">
   <thead>
@@ -11,6 +11,7 @@
       <th>Lastname</th>
       <th>Firstname</th>
       <th>Birthdate</th>
+      <th>Modify</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -39,14 +40,22 @@
           {{stagiaire.getBirthDate() | date: 'dd-MM-YYYY'}}
         </td>
         <td>
+          <button class="buttonDelete" type="button">🖊️</button>
+        </td>
+        <td>
           <button class="buttonDelete" type="button" (click)="onRemove(stagiaire)">X</button>
         </td>
+
+
+
       </tr>
     </ng-container>
   </tbody>
 
   <tfoot>
     <td colspan="4">Total number of trainees </td>
-    <td>{{stagiairesBeforeStopDate.length}}</td>
+    <td>{{getVisibleStagiaire()}}</td>
   </tfoot>
 </table>
+
+<a class="link-button" [routerLink]="['/', 'stagiaire', 'add']">Ajouter un stagiaire</a>

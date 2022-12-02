@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Stagiaire } from '../models/stagiaire';
-import { Observable } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { take, map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { StagiaireDetailComponent } from 'src/app/stagiaires/components/stagiaire-detail/stagiaire-detail.component';
+import { StagiaireDto } from 'src/app/stagiaires/dto/stagiaire-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +17,9 @@ export class StagiaireService {
   constructor(
     private httpClient: HttpClient
   ) {
-    // this.feedIt();
   }
+
+  // Récupérer tous les stagiaire : 
 
   public findAll(): Observable<any> {
     return this.httpClient.get<any>(
@@ -28,33 +31,73 @@ export class StagiaireService {
           return stagiaires.map((inputStagiaire: any) => {
             const stagiaire: Stagiaire = new Stagiaire();
             stagiaire.setId(inputStagiaire.id);
-            stagiaire.setLastName(inputStagiaire.lastname);
-            stagiaire.setFirstName(inputStagiaire.firstname);
+            stagiaire.setLastName(inputStagiaire.lastName);
+            stagiaire.setFirstName(inputStagiaire.firstName);
             stagiaire.setEmail(inputStagiaire.email);
             stagiaire.setPhoneNumber(inputStagiaire.phoneNumber);
-            stagiaire.setBirthDate(new Date(inputStagiaire.birthdate));
+            stagiaire.setBirthDate(new Date(inputStagiaire.birthDate));
+            console.log(stagiaire);
             return stagiaire;
           })
         })
       )
   }
 
+  // Recherche d'un stagiaire par ID : 
+
+  public findOne(id: number): Observable<Stagiaire> {
+    return this.httpClient.get<any>(
+      `${this.controllerBaseUrl}/${id}`
+    ).pipe(
+      take(1),
+      map((inputStagiaire: any) => {
+        const stagiaire: Stagiaire = new Stagiaire();
+        stagiaire.setId(inputStagiaire.id);
+        stagiaire.setLastName(inputStagiaire.lastName);
+        stagiaire.setFirstName(inputStagiaire.firstName);
+        stagiaire.setEmail(inputStagiaire.email);
+        stagiaire.setPhoneNumber(inputStagiaire.phoneNumber);
+        stagiaire.setBirthDate(new Date(inputStagiaire.birthDate));
+        console.log(stagiaire);
+        return stagiaire;
+      })
+    )
+  }
+
   public getStagiaires(): Array<Stagiaire> {
     return this.stagiaires;
   }
 
-  public delete(stagiaire: Stagiaire): void {
-    // const stagiaireIndex: number = this.stagiaires.findIndex(
-    //   (obj: Stagiaire) => obj.getId() === stagiaire.getId()
-    // );
-    // this.stagiaires.splice(stagiaireIndex, 1);
-
-    // 1. call backend 
-    this.httpClient.delete(`${this.controllerBaseUrl}/${stagiaire.getId()}`
-    ).subscribe((res: any) =>
-      console.log("delete ok")
+  public addStagiaire(stagiaire: StagiaireDto): Observable<Stagiaire> {
+    console.log('add stagiaire asked: ', stagiaire)
+    // Transform any to Stagiaire
+    return this.httpClient.post<StagiaireDto>(
+      this.controllerBaseUrl,
+      stagiaire
     )
-    // 2. adapt local list 
+      .pipe(
+        take(1),
+        map((stagiaireDto: StagiaireDto) => {
+          const stagiaire: Stagiaire = new Stagiaire();
+          stagiaire.setId(stagiaireDto.id!);
+          stagiaire.setLastName(stagiaireDto.lastname);
+          stagiaire.setFirstName(stagiaireDto.firstname);
+          stagiaire.setEmail(stagiaireDto.email);
+          stagiaire.setPhoneNumber(stagiaireDto.phoneNumber);
+          stagiaire.setBirthDate(stagiaireDto.birthdate);
+          return stagiaire;
+        })
+      );
+  }
+
+  public delete(stagiaire: Stagiaire): Observable<HttpResponse<any>> {
+    // 1. call backend
+    return this.httpClient.delete(
+      `${this.controllerBaseUrl}/${stagiaire.getId()}`,
+      {
+        observe: 'response'
+      }
+    );
   }
 
   public getStagiaireBornBefore(date: Date | null): Array<Stagiaire> {
@@ -73,77 +116,11 @@ export class StagiaireService {
     if (date === null) {
       return this.stagiaires.length;
     }
-
     return (date.getDate() === 31) ?
       this.stagiaires.filter((obj: Stagiaire) => obj.getBirthDate() > date).length :
       this.stagiaires.filter((obj: Stagiaire) => obj.getBirthDate() < date).length;
   }
 
-  public getStagiaireInitials(stagiaire: Stagiaire) {
-
-  }
-
-  // public getVisibleStagiaireNumber(date: Date | null): number {
-  //   if (date === null) {
-  //     return this.stagiaires.length;
-  //   }
-
-  //   return (date.getDate() === 31) ?
-  //     this.stagiaires.filter((obj: Stagiaire) => obj.getBirthDate() > date).length :
-  //     this.stagiaires.filter((obj: Stagiaire) => obj.getBirthDate() < date).length
-  // }
-
-  private feedIt(): void {
-    let stagiaire: Stagiaire = new Stagiaire();
-    stagiaire.setId(1);
-    stagiaire.setLastName('André');
-    stagiaire.setFirstName('Anthony');
-    stagiaire.setPhoneNumber('+(33)6 22 22 22 22');
-    stagiaire.setEmail('anthony-andre@test.fr');
-    stagiaire.setBirthDate(new Date(1992, 3, 28));
-
-    this.stagiaires.push(stagiaire);
-
-    stagiaire = new Stagiaire();
-    stagiaire.setId(2);
-    stagiaire.setLastName('Stallone');
-    stagiaire.setFirstName('Sylvester');
-    stagiaire.setPhoneNumber('+(33)6 15 15 15 15');
-    stagiaire.setEmail('sylvester-stallone@test.fr');
-    stagiaire.setBirthDate(new Date(1981, 3, 30));
-
-    this.stagiaires.push(stagiaire);
-
-    stagiaire = new Stagiaire();
-    stagiaire.setId(3);
-    stagiaire.setLastName('Norris');
-    stagiaire.setFirstName('Chuck');
-    stagiaire.setPhoneNumber('+(33)6 12 12 12 12');
-    stagiaire.setEmail('chuck-norris@test.fr');
-    stagiaire.setBirthDate(new Date(1961, 5, 27));
-
-    this.stagiaires.push(stagiaire);
-
-    stagiaire = new Stagiaire();
-    stagiaire.setId(4);
-    stagiaire.setLastName('Cutugno');
-    stagiaire.setFirstName('Toto');
-    stagiaire.setPhoneNumber('+(33)6 58 58 58 58');
-    stagiaire.setEmail('toto-cutugno@test.fr');
-    stagiaire.setBirthDate(new Date(1949, 6, 4));
-
-    this.stagiaires.push(stagiaire);
-
-    stagiaire = new Stagiaire();
-    stagiaire.setId(5);
-    stagiaire.setLastName('Apeupres');
-    stagiaire.setFirstName('Jean-Michel');
-    stagiaire.setPhoneNumber('+(33)6 85 85 85 85');
-    stagiaire.setEmail('jean-michel-apeupres@test.fr');
-    stagiaire.setBirthDate(new Date(1942, 6, 4));
-
-    this.stagiaires.push(stagiaire);
 
 
-  }
 }

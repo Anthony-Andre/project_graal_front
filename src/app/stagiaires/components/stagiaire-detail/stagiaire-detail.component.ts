@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { appendFile } from 'fs';
 import { emit } from 'process';
 import { Stagiaire } from 'src/app/core/models/stagiaire';
+import { StagiaireService } from 'src/app/core/services/stagiaire.service';
 import { HandleDetailService } from 'src/app/shared/directives/handle-detail.service';
 
 @Component({
@@ -22,15 +24,29 @@ export class StagiaireDetailComponent implements OnInit {
   }
 
   constructor(
-    private handleDetailService: HandleDetailService
+    private handleDetailService: HandleDetailService,
+    private route: ActivatedRoute,
+    private stagiaireService: StagiaireService
   ) { }
 
   ngOnInit(): void {
+    this.route.params
+      .subscribe((routeParams: Params) => {
+        console.log('Routes params ', JSON.stringify(routeParams));
+        const stagiaireId: number = routeParams['id'];
+        console.log('Id from route = ', stagiaireId);
+        this.stagiaireService.findOne(stagiaireId)
+          .subscribe((stagiaire: Stagiaire) =>
+            this.stagiaire = stagiaire
+          )
+      })
   }
 
   public changeStagiaire(stagiaire: Stagiaire) {
     this.stagiaire = stagiaire;
   }
+
+
 
   public closeStagiaireCard() {
     this.handleDetailService.setIsDetailHidden(true);

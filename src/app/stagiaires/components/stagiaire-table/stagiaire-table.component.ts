@@ -4,6 +4,8 @@ import { Stagiaire } from 'src/app/core/models/stagiaire';
 import { StagiaireService } from 'src/app/core/services/stagiaire.service';
 import { HandleDetailService } from 'src/app/shared/directives/handle-detail.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-stagiaire-table',
@@ -14,7 +16,7 @@ export class StagiaireTableComponent implements OnInit {
 
   public stagiaires: Array<Stagiaire> = [];
   public stopDate: Date | null = new Date(1990, 11, 31);
-  public stagiairesBeforeStopDate: Array<Stagiaire> = this.stagiaireService.getStagiaireBornBefore(this.stopDate);
+  public stagiairesBeforeStopDate: Number = this.stagiaireService.getVisibleStagiaireNumber(this.stopDate);
   public stagiaire: Stagiaire | null = null;
   public visibility: Boolean = true;
   public bubbleConfig: any = {
@@ -35,7 +37,8 @@ export class StagiaireTableComponent implements OnInit {
 
   constructor(
     private stagiaireService: StagiaireService,
-    private handleDetailService: HandleDetailService
+    private handleDetailService: HandleDetailService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,12 +50,26 @@ export class StagiaireTableComponent implements OnInit {
 
   public onRemove(stagiaire: Stagiaire): void {
     console.log(`L'utilisateur souhaite supprimer ${stagiaire.getLastName()}`);
-    this.stagiaireService.delete(stagiaire);
+    this.stagiaireService.delete(stagiaire)
+      .subscribe({
+        next: (response: HttpResponse<any>) => {
+
+          // Here goes the snackbar
+        },
+        error: (error: any) => {
+          // Something went wrong, deal with it
+        },
+        complete: () => {
+          this.stagiaires.splice(
+            this.stagiaires.findIndex((s: Stagiaire) => s.getId() === stagiaire.getId()),
+            1
+          )
+        }
+      })
   }
 
   public onClick(stagiaire: Stagiaire): void {
-    this.selectedStagiaire = stagiaire;
-    this.handleDetailService.setIsDetailHidden(false);
+    this.router.navigate(['/', 'stagiaire', stagiaire.getId()])
   }
 
   public filterChanged(event: Date | null): void {
@@ -68,20 +85,25 @@ export class StagiaireTableComponent implements OnInit {
 
     if (this.stopDate.getDate() === 31) {
       return stagiaire.getBirthDate() > this.stopDate;
-    }
 
+    }
     return stagiaire.getBirthDate() < this.stopDate;
   }
 
-  public showStagiaire(stagiaire: Stagiaire) {
-    if (this.visibility === true) {
-      this.stagiaire = stagiaire;
-      this.visibility = false;
-    }
-  }
+  // public showStagiaire(stagiaire: Stagiaire) {
+  //   if (this.visibility === true) {
+  //     this.stagiaire = stagiaire;
+  //     this.visibility = false;
+  //   }
+  // }
 
   public closeStagiaireCard(hiddenStatus: Boolean): void {
     this.visibility = hiddenStatus;
+  }
+
+  public getVisibleStagiaire(): number {
+    return this.stagiaireService.getVisibleStagiaireNumber(
+      this.stopDate);
   }
 
 }

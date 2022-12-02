@@ -1,10 +1,10 @@
 export class Stagiaire {
     private id: number = 0;
-    private firstName: string = "";
-    private lastName: string = "";
+    private firstname: string = "";
+    private lastname: string = "";
     private email: string = "";
     private phoneNumber: string = "";
-    private birthDate!: Date;
+    private birthdate!: Date;
 
     public getId(): number {
         return this.id;
@@ -15,27 +15,27 @@ export class Stagiaire {
     }
 
     public getLastName(): string {
-        return this.lastName;
+        return this.lastname;
     }
 
     public setLastName(lastName: string): void {
-        this.lastName = lastName;
+        this.lastname = lastName;
     }
 
     public getFirstName(): string {
-        return this.firstName;
+        return this.firstname;
     }
 
     public setFirstName(firstName: string): void {
-        this.firstName = firstName;
+        this.firstname = firstName;
     }
 
     public getBirthDate(): Date {
-        return this.birthDate;
+        return this.birthdate;
     }
 
-    public setBirthDate(birthDate: Date): void {
-        this.birthDate = birthDate;
+    public setBirthDate(birthdate: Date): void {
+        this.birthdate = birthdate;
     }
 
     public getPhoneNumber(): string {
