@@ -34,4 +34,23 @@ export class PoeService {
         })
       )
   }
+
+  public update(poe: Poe): Observable<Poe> {
+    return this.httpClient.put<Poe>(
+      `${this.controllerBaseUrl}`,
+      poe
+    )
+      .pipe(
+        take(1),
+        map((anyPoe: any) => {
+          const stagiaire: Poe = new Poe();
+          poe.setId(anyPoe.id!);
+          poe.setTitle(anyPoe.title);
+          poe.setBeginDate(anyPoe.beginDate);
+          poe.setEndDate(anyPoe.endDate);
+          poe.setPoeType(anyPoe.poeType);          
+          return stagiaire;
+        })
+      )
+  }
 }
