@@ -16,11 +16,19 @@ export class Poe {
         this.id = id;
     }
 
+    public getTitle(): string {
+        return this.title;
+    }
+
+    public setTitle(title: string): void {
+        this.title = title;
+    }
+
     public getBeginDate(): Date {
         return this.beginDate;
     }
 
-    public setBirthDate(beginDate: Date): void {
+    public setBeginDate(beginDate: Date): void {
         this.beginDate = beginDate;
     }
 
