@@ -36,7 +36,6 @@ export class StagiaireService {
             stagiaire.setEmail(inputStagiaire.email);
             stagiaire.setPhoneNumber(inputStagiaire.phoneNumber);
             stagiaire.setBirthDate(new Date(inputStagiaire.birthDate));
-            console.log(stagiaire);
             return stagiaire;
           })
         })

@@ -15,11 +15,11 @@
         <input type="date" name="birthdate" id="" birthdate formControlName="birthdate">
         -->
 
-        <div>
+        <div id="birthDate">
             <mat-form-field appearance="fill">
                 <mat-label>Birthdate</mat-label>
                 <input matInput [matDatepicker]="dp" formControlName="birthdate">
-                <mat-hint>JJ-MM-YYYY</mat-hint>
+                <mat-hint>Format : JJ-MM-YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
                 <mat-datepicker #dp></mat-datepicker>
             </mat-form-field>

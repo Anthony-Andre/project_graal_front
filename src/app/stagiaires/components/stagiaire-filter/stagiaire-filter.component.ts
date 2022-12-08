@@ -23,14 +23,11 @@ export class StagiaireFilterComponent implements OnInit {
 
     if (this.filterDate === null) {
       this.changeButtonState('btnAll');
-      console.log("btnAll")
     } else {
       if (this.filterDate.getDate() === 31) {
         this.changeButtonState('btnGT1950');
-        console.log('btnGT');
       } else {
         this.changeButtonState('btnLT1950');
-        console.log('btnLT');
       }
     }
   }
