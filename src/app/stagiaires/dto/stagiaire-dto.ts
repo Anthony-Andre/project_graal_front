@@ -1,7 +1,7 @@
 import { Stagiaire } from "src/app/core/models/stagiaire";
 
 export class StagiaireDto {
-
+  // Changegit
   public id?: number;
   public lastname: string = '';
   public firstname: string = '';
