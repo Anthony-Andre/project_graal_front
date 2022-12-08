@@ -35,6 +35,7 @@ export class PoeService {
       )
   }
 
+<<<<<<< HEAD
   public delete(poe: Poe): Observable<HttpResponse<any>> {
     return this.httpClient.delete(
       `${this.controllerBaseUrl}/${poe.getId()}`,
@@ -44,4 +45,24 @@ export class PoeService {
     );
   }
 
+=======
+  public update(poe: Poe): Observable<Poe> {
+    return this.httpClient.put<Poe>(
+      `${this.controllerBaseUrl}`,
+      poe
+    )
+      .pipe(
+        take(1),
+        map((anyPoe: any) => {
+          const stagiaire: Poe = new Poe();
+          poe.setId(anyPoe.id!);
+          poe.setTitle(anyPoe.title);
+          poe.setBeginDate(anyPoe.beginDate);
+          poe.setEndDate(anyPoe.endDate);
+          poe.setPoeType(anyPoe.poeType);          
+          return stagiaire;
+        })
+      )
+  }
+>>>>>>> 5fb27b4b54c43f2cd6b5fc0b47b0e2f41b35705a
 }
