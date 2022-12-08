@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './poe-table.component.html',
   styleUrls: ['./poe-table.component.scss']
 })
-export class PoeTableComponent implements OnInit {  
+export class PoeTableComponent implements OnInit {
+  
     ELEMENT_DATA: any = [
       
     ];
@@ -24,6 +25,6 @@ export class PoeTableComponent implements OnInit {
   
   
   
-  
+  }
 
 }
