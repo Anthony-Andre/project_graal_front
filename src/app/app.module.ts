@@ -13,8 +13,6 @@ import { StagiaireFormComponent } from './stagiaires/components/stagiaire-form/s
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.component';
-import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -24,8 +22,7 @@ import { MatTableModule } from '@angular/material/table';
     InitialsPipe,
     StagiaireDetailComponent,
     BubbleDirective,
-    StagiaireFormComponent,
-    PoeTableComponent
+    StagiaireFormComponent
   ],
   imports: [
     BrowserModule,
