@@ -1,3 +1,5 @@
+import { PoeType } from "../enums/poe-type";
+
 export class Poe {
     private id: number = 0;
     private title: string = "";
