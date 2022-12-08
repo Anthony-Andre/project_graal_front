@@ -1,5 +1,5 @@
 import { Poe } from "src/app/core/models/poe";
-import { PoeType } from "../enums/poe-type";
+import { PoeType } from "../../enums/poe-type";
 
 export class PoeDto {
   // Changegit
