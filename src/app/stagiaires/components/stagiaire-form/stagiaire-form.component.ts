@@ -46,6 +46,9 @@ export class StagiaireFormComponent implements OnInit {
       console.log('id =', this.stagiaireForm.value.id);
     }
 
+    console.log("Salut les petits potes")
+
+
 
     //   if (this.router.url.includes("update")) {
     //     this.addMode = false;
