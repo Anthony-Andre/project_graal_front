@@ -13,8 +13,6 @@ import { StagiaireFormComponent } from './stagiaires/components/stagiaire-form/s
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.component';
-import { PoeFilterComponent } from './core/poes/components/poe-filter/poe-filter.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +22,14 @@ import { PoeFilterComponent } from './core/poes/components/poe-filter/poe-filter
     InitialsPipe,
     StagiaireDetailComponent,
     BubbleDirective,
-    StagiaireFormComponent,
-    PoeFormComponent,
-    PoeFilterComponent
+    StagiaireFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    MatTableModule
   ],
   providers: [
   ],

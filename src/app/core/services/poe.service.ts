@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -28,9 +28,37 @@ export class PoeService {
             poe.setTitle(inputPoe.title);
             poe.setBeginDate(inputPoe.beginDate);
             poe.setEndDate(inputPoe.endDate);
-            poe.setPoeType(inputPoe.poeType);            
+            poe.setPoeType(inputPoe.poeType);
             return poe;
           })
+        })
+      )
+  }
+
+  public delete(poe: Poe): Observable<HttpResponse<any>> {
+    return this.httpClient.delete(
+      `${this.controllerBaseUrl}/${poe.getId()}`,
+      {
+        observe: 'response'
+      }
+    );
+  }
+
+  public update(poe: Poe): Observable<Poe> {
+    return this.httpClient.put<Poe>(
+      `${this.controllerBaseUrl}`,
+      poe
+    )
+      .pipe(
+        take(1),
+        map((anyPoe: any) => {
+          const stagiaire: Poe = new Poe();
+          poe.setId(anyPoe.id!);
+          poe.setTitle(anyPoe.title);
+          poe.setBeginDate(anyPoe.beginDate);
+          poe.setEndDate(anyPoe.endDate);
+          poe.setPoeType(anyPoe.poeType);
+          return stagiaire;
         })
       )
   }
