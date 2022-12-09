@@ -10,8 +10,9 @@ import { PoeService } from 'src/app/core/services/poe.service';
 export class PoeTableComponent implements OnInit {
 
   public poes: Array<Poe> = [];
+  public stopDate: String | null = null;
 
-  constructor(private poeService: PoeService) { } 
+  constructor(private poeService: PoeService) { }
 
   ngOnInit(): void {
     this.poeService.findAll().subscribe((poes: Poe[]) => {
@@ -27,6 +28,25 @@ export class PoeTableComponent implements OnInit {
     console.log(`L'utilisateur souhaite modifier ${poe.getTitle()}`);
   }
 
-  
+  public filterChanged(event: String | null): void {
+    console.log(`Filter has changed to : ${event}`);
+    this.stopDate = event;
+  }
+
+  public changeView(poe: Poe): boolean {
+    if (this.stopDate === null) {
+      return true;
+    }
+    if (this.stopDate === "oneMonth") {
+    }
+    return false;
+
+
+
+
+
+  }
+
+
 
 }

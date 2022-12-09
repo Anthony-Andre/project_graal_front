@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {
   MatMomentDateModule,
   MomentDateAdapter,
@@ -28,6 +28,7 @@ import 'moment/locale/fr';
     MaterialUiModule,
     HttpClientModule,
     ReactiveFormsModule,
+    
     MatMomentDateModule
   ],
   providers: [

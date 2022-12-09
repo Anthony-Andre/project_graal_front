@@ -1,1 +1,21 @@
-<p>poe-filter works!</p>
+<div class="filtreDate">
+
+  <button type="button" [ngClass]="{'active': getButtonState('btnOneMonth')}"
+    (click)="changeButtonState('btnOneMonth')">
+    1 month
+  </button>
+
+  <button type="button" [ngClass]="{'active': getButtonState('btnSixMonth')}"
+    (click)="changeButtonState('btnSixMonth')">
+    6 month
+  </button>
+
+  <button type="button" [ngClass]="{'active': getButtonState('btnOneYear')}" (click)="changeButtonState('btnOneYear')">
+    1 year
+  </button>
+
+  <button type="button" [ngClass]="{'active': getButtonState('btnAll')}" (click)="changeButtonState('btnAll')">
+    All
+  </button>
+
+</div>
