@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Poe } from '../models/poe';
+import { PoeDto } from '../poes/dto/poe-dto';
 
 
 @Injectable({
@@ -51,6 +52,26 @@ export class PoeService {
         return poe;
       })
     )
+  }
+
+  public addPoe(poe: PoeDto): Observable<Poe> {
+    console.log('add poe : ', poe)
+    return this.httpClient.post<PoeDto>(
+      this.controllerBaseUrl,
+      poe
+    )
+      .pipe(
+        take(1),
+        map((poeDto: PoeDto) => {
+          const poe: Poe = new Poe();
+          poe.setId(poeDto.id!);
+          poe.setTitle(poeDto.title)
+          poe.setBeginDate(poeDto.beginDate)
+          poe.setEndDate(poeDto.endDate)
+          poe.setPoeType(poeDto.type)
+          return poe;
+        })
+      );
   }
 
   public delete(poe: Poe): Observable<HttpResponse<any>> {

@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Inject, Injectable } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -39,19 +40,19 @@ export class FormBuilderService {
         ]
       ],
       begindate: [
-        this.poe.getBeginDate,
+        this.poe.getBeginDate() !== null ? this.poe.getBeginDate() : '',
         [
           Validators.required
         ]
       ],
       enddate: [
-        this.poe.getEndDate,
+        this.poe.getEndDate() !== null ? this.poe.getEndDate() : '',
         [
           Validators.required
         ]
       ],
       type: [
-        this.poe.getType,
+        this.poe.getType(),
         [
           Validators.required
         ]
