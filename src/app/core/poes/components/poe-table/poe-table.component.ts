@@ -19,4 +19,12 @@ export class PoeTableComponent implements OnInit {
     })
   }
 
+  public onRemove(poe: Poe): void {
+    console.log(`L'utilisateur souhaite supprimer ${poe.getTitle()}`);
+  }
+
+  public onUpDate(poe: Poe): void {
+    console.log(`L'utilisateur souhaite modifier ${poe.getTitle()}`);
+  }
+
 }
