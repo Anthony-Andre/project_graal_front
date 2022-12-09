@@ -6,6 +6,8 @@ import { StagiaireFormComponent } from './stagiaires/components/stagiaire-form/s
 import { StagiaireTableComponent } from './stagiaires/components/stagiaire-table/stagiaire-table.component';
 import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.component';
 import { StagiaireResolver } from './stagiaires/resolvers/stagiaire.resolver';
+import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.component';
+import { PoeResolver } from './core/resolvers/poes/resolvers/poe.resolver';
 
 const routes: Routes = [];
 
@@ -23,11 +25,21 @@ export class AppRoutingModule {
     },
     {
       path: 'home',
-      component: StagiaireTableComponent
+      component: PoeTableComponent
     },
     {
       path: 'poe',
       component: PoeTableComponent
+    },
+    {
+      path: 'poe/update/:id',
+      component: PoeFormComponent,
+      resolve: { form: PoeResolver }
+    },
+    {
+      path: 'poe/add',
+      component: PoeFormComponent,
+      resolve: {form: PoeResolver}
     },
     {
       path: 'stagiaire/add',

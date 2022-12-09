@@ -35,6 +35,24 @@ export class PoeService {
       )
   }
 
+  public findOne(id: number): Observable<Poe> {
+    return this.httpClient.get<any>(
+      `${this.controllerBaseUrl}/${id}`
+    ).pipe(
+      take(1),
+      map((inputPoe: any) => {
+        const poe: Poe = new Poe();
+        poe.setId(inputPoe.id);
+        poe.setTitle(inputPoe.title);
+        poe.setBeginDate(new Date(inputPoe.beginDate));
+        poe.setEndDate(new Date(inputPoe.endDate));
+        poe.setPoeType(inputPoe.poeType);
+        console.log(poe);
+        return poe;
+      })
+    )
+  }
+
   public delete(poe: Poe): Observable<HttpResponse<any>> {
     return this.httpClient.delete(
       `${this.controllerBaseUrl}/${poe.getId()}`,
