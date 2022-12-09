@@ -5,7 +5,7 @@ export class Poe {
     private title: string = "";
     private beginDate!: Date;
     private endDate!: Date;
-    private poeType!: PoeType;
+    private type!: PoeType;
 
 
     public getId(): number {
@@ -40,12 +40,12 @@ export class Poe {
         this.endDate = endDate;
     }
 
-    public getPoeType(): PoeType {
-        return this.poeType;
+    public getType(): PoeType {
+        return this.type;
     }
 
-    public setPoeType(poeType: PoeType): void {
-        this.poeType = poeType;
+    public setPoeType(type: PoeType): void {
+        this.type = type;
     }
 }
 
