@@ -50,6 +50,9 @@ export class PoeTableComponent implements OnInit {
   }
 
   public changeView(poe: Poe): boolean {
+    // const date: Date = new Date();
+    // const diff: number = Math.floor(date.getTime() - poe.getEndDate().getTime());
+
     if (this.stopDate === null) {
       return true;
     }
@@ -72,3 +75,8 @@ export class PoeTableComponent implements OnInit {
   }
 
 }
+
+
+
+
+

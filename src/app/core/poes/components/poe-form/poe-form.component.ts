@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Poe } from 'src/app/core/models/poe';
 import { PoeService } from 'src/app/core/services/poe.service';
 import { StagiaireDto } from 'src/app/stagiaires/dto/stagiaire-dto';
@@ -56,20 +57,17 @@ export class PoeFormComponent implements OnInit {
     onSubmit() {
       console.log('Delegate add poe: ', this.poeForm.value);
 
-      // TODO (need methods add + update du service)
-      // ________________________________________________
-
-    //   const dto: PoeDto = new PoeDto(this.poeForm.value);
+      const dto: PoeDto = new PoeDto(this.poeForm.value);
   
-    //   let subscription: Observable<any>;
+      let subscription: Observable<any>;
   
-    //   if (this.addMode) {
-    //     subscription = this.poeService.addPoe(dto); // ATTENTION NOMS DES METHODS
-    //   } else {
-    //     subscription = this.poeService.update(this.poeForm.value); // ATTENTION NOMS DES METHODS
-    //   }
+      if (this.addMode) {
+        subscription = this.poeService.addPoe(dto); 
+      } else {
+        subscription = this.poeService.update(this.poeForm.value);
+      }
   
-    //   subscription.subscribe(() => this.goHome())
+      subscription.subscribe(() => this.goHome())
     }
   
     public goHome(): void {
