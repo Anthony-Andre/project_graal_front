@@ -38,15 +38,21 @@ export class PoeTableComponent implements OnInit {
       return true;
     }
     if (this.stopDate === "oneMonth") {
+      console.log("Date du jour: ", new Date());
+      console.log("Date de la POE : ", poe.getEndDate());
+
+      return this.getDayDiff(new Date(), poe.getEndDate()) > 31 && this.getDayDiff(new Date(), poe.getEndDate()) < 179;
     }
-    return false;
-
-
-
-
-
+    if (this.stopDate === "sixMonth") {
+      return this.getDayDiff(new Date(), poe.getEndDate()) > 180 && this.getDayDiff(new Date(), poe.getEndDate()) < 364;
+    }
+    return this.getDayDiff(new Date(), poe.getEndDate()) > 365;
   }
 
+  public getDayDiff(startDate: Date, endDate: Date): number {
+    const msInDay = 24 * 60 * 60 * 1000;
+    return Math.round(Math.abs(Number(endDate) - Number(startDate)) / msInDay);
+  }
 
 
 }
