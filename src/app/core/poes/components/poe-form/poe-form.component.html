@@ -1,6 +1,7 @@
 <ng-container *ngIf="poeForm">
 
     <form [formGroup]="poeForm" (ngSubmit)="onSubmit()">
+        <!-- Onsubmit  -->
 
         <h1>Ajouter une Poe</h1>
 
@@ -15,7 +16,7 @@
         <div id="beginDate">
             <mat-form-field appearance="fill">
                 <mat-label>Begindate</mat-label>
-                <input matInput [matDatepicker]="dp" formControlName="beginDate">
+                <input matInput [matDatepicker]="dp">
                 <mat-hint>Format : JJ-MM-YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
                 <mat-datepicker #dp></mat-datepicker>
@@ -25,17 +26,16 @@
         <div id="endDate">
             <mat-form-field appearance="fill">
                 <mat-label>EndDate</mat-label>
-                <input matInput [matDatepicker]="dp" formControlName="endDate">
+                <input matInput [matDatepicker]="bp">
                 <mat-hint>Format : JJ-MM-YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dp></mat-datepicker>
+                <mat-datepicker-toggle matIconSuffix [for]="bp"></mat-datepicker-toggle>
+                <mat-datepicker #bp></mat-datepicker>
             </mat-form-field>
         </div>
 
 
         <button [disabled]="!poeForm.valid">{{addMode ? 'Ajouter' : 'Modifier'}}</button>
 
-        <!-- goHome() encore en commentaire dans le ts -->
 
         <button type="button" (click)="goHome()">Retour à la maison</button>
 
