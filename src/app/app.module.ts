@@ -13,6 +13,7 @@ import { StagiaireFormComponent } from './stagiaires/components/stagiaire-form/s
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.component';
+import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.compo
     StagiaireDetailComponent,
     BubbleDirective,
     StagiaireFormComponent,
-    PoeFormComponent
+    PoeFormComponent,
+    PoeTableComponent
   ],
   imports: [
     BrowserModule,
