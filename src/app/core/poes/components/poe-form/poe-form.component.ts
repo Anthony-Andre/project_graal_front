@@ -57,17 +57,14 @@ export class PoeFormComponent implements OnInit {
     onSubmit() {
       console.log('Delegate add poe: ', this.poeForm.value);
 
-      // TODO (Observable rouge)
-      // ________________________________________________
-
       const dto: PoeDto = new PoeDto(this.poeForm.value);
   
       let subscription: Observable<any>;
   
       if (this.addMode) {
-        subscription = this.poeService.addPoe(dto); // ATTENTION NOMS DES METHODS
+        subscription = this.poeService.addPoe(dto); 
       } else {
-        subscription = this.poeService.update(this.poeForm.value); // ATTENTION NOMS DES METHODS
+        subscription = this.poeService.update(this.poeForm.value);
       }
   
       subscription.subscribe(() => this.goHome())
