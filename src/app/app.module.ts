@@ -10,10 +10,9 @@ import { StagiaireDetailComponent } from './stagiaires/components/stagiaire-deta
 import { BubbleDirective } from './shared/directives/bubble.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { StagiaireFormComponent } from './stagiaires/components/stagiaire-form/stagiaire-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { MatTableModule } from '@angular/material/table';
+import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.component';
 import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.component';
 import { PoeFilterComponent } from './core/poes/components/poe-filter/poe-filter.component';
 
@@ -26,6 +25,7 @@ import { PoeFilterComponent } from './core/poes/components/poe-filter/poe-filter
     StagiaireDetailComponent,
     BubbleDirective,
     StagiaireFormComponent,
+    PoeFormComponent,
     PoeTableComponent,
     PoeFilterComponent
   ],
@@ -33,8 +33,7 @@ import { PoeFilterComponent } from './core/poes/components/poe-filter/poe-filter
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
-    MatTableModule
+    SharedModule
   ],
   providers: [
   ],

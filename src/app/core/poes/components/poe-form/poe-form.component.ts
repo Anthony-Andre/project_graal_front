@@ -54,28 +54,27 @@ export class PoeFormComponent implements OnInit {
     }
   
     onSubmit() {
-      console.log('Delegate add stagiaire: ', this.poeForm.value);
+      console.log('Delegate add poe: ', this.poeForm.value);
 
       // TODO (need methods add + update du service)
-
       // ________________________________________________
 
-    //   const dto: PoeDto = new StagiaireDto(this.poeForm.value);
+    //   const dto: PoeDto = new PoeDto(this.poeForm.value);
   
     //   let subscription: Observable<any>;
   
     //   if (this.addMode) {
-    //     subscription = this.poeService.addStagiaire(dto); // ATTENTION NOMS DES METHODS
+    //     subscription = this.poeService.addPoe(dto); // ATTENTION NOMS DES METHODS
     //   } else {
     //     subscription = this.poeService.update(this.poeForm.value); // ATTENTION NOMS DES METHODS
     //   }
   
     //   subscription.subscribe(() => this.goHome())
-    // }
+    }
   
-    // public goHome(): void {
-    //   this.router.navigate(['/', 'home'])
-    // }
+    public goHome(): void {
+      this.router.navigate(['/', 'home'])
+    }
 
-  }
 }
+

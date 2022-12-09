@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { PoeType } from '../enums/poe-type';
 import { Poe } from '../models/poe';
 
 
@@ -28,11 +29,29 @@ export class PoeService {
             poe.setTitle(inputPoe.title);
             poe.setBeginDate(inputPoe.beginDate);
             poe.setEndDate(inputPoe.endDate);
-            poe.setPoeType(inputPoe.poeType);
+            poe.setPoeType(inputPoe.type);
             return poe;
           })
         })
       )
+  }
+
+  public findOne(id: number): Observable<Poe> {
+    return this.httpClient.get<any>(
+      `${this.controllerBaseUrl}/${id}`
+    ).pipe(
+      take(1),
+      map((inputPoe: any) => {
+        const poe: Poe = new Poe();
+        poe.setId(inputPoe.id);
+        poe.setTitle(inputPoe.title);
+        poe.setBeginDate(new Date(inputPoe.beginDate));
+        poe.setEndDate(new Date(inputPoe.endDate));
+        poe.setPoeType(inputPoe.type);
+        console.log(poe);
+        return poe;
+      })
+    )
   }
 
   public delete(poe: Poe): Observable<HttpResponse<any>> {
@@ -57,7 +76,7 @@ export class PoeService {
           poe.setTitle(anyPoe.title);
           poe.setBeginDate(anyPoe.beginDate);
           poe.setEndDate(anyPoe.endDate);
-          poe.setPoeType(anyPoe.poeType);
+          poe.setPoeType(anyPoe.type);
           return stagiaire;
         })
       )
