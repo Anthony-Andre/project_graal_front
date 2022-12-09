@@ -1,0 +1,44 @@
+<ng-container *ngIf="poeForm">
+
+    <form [formGroup]="poeForm" (ngSubmit)="onSubmit()">
+
+        <h1>Ajouter une Poe</h1>
+
+        <label for="title">Veuillez saisir le nom d'une Poe:</label>
+        <input id="title" type="text" placeholder="title" formControlName="title">
+
+        <!-- TODO : en dessous, remplacer par un menu déroulant -->
+
+        <label for="poeType">Type de Poe:</label>
+        <input id="poeType" type="text" placeholder="Type" formControlName="poeType">
+
+        <div id="beginDate">
+            <mat-form-field appearance="fill">
+                <mat-label>Begindate</mat-label>
+                <input matInput [matDatepicker]="dp" formControlName="beginDate">
+                <mat-hint>Format : JJ-MM-YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div id="endDate">
+            <mat-form-field appearance="fill">
+                <mat-label>EndDate</mat-label>
+                <input matInput [matDatepicker]="dp" formControlName="endDate">
+                <mat-hint>Format : JJ-MM-YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+
+        <button [disabled]="!poeForm.valid">{{addMode ? 'Ajouter' : 'Modifier'}}</button>
+
+        <!-- goHome() encore en commentaire dans le ts -->
+
+        <button type="button" (click)="goHome()">Retour à la maison</button>
+
+    </form>
+
+</ng-container>
