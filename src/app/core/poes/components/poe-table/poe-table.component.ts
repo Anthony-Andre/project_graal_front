@@ -49,14 +49,19 @@ export class PoeTableComponent implements OnInit {
   }
 
   public changeView(poe: Poe): boolean {
-    if (this.stopDate === null) {
+    // const date: Date = new Date();
+    // const diff: number = Math.floor(date.getTime() - poe.getEndDate().getTime());
+
+     if (this.stopDate === null) {
       return true;
     }
     if (this.stopDate === "oneMonth") {
-      console.log("Date du jour: ", new Date());
-      console.log("Date de la POE : ", poe.getEndDate());
+      // console.log("Date du jour: ", new Date());
+      // console.log("Date de la POE : ", poe.getEndDate());
+      // const month: number = 31*24*60*60*1000;
+      // return (diff - month) > 0 && (diff - 6*month) <0;      
 
-      return this.getDayDiff(new Date(), poe.getEndDate()) > 31 && this.getDayDiff(new Date(), poe.getEndDate()) < 179;
+    return this.getDayDiff(new Date(), poe.getEndDate()) > 31 && this.getDayDiff(new Date(), poe.getEndDate()) < 179;
     }
     if (this.stopDate === "sixMonth") {
       return this.getDayDiff(new Date(), poe.getEndDate()) > 180 && this.getDayDiff(new Date(), poe.getEndDate()) < 364;
@@ -68,6 +73,9 @@ export class PoeTableComponent implements OnInit {
     const msInDay = 24 * 60 * 60 * 1000;
     return Math.round(Math.abs(Number(endDate) - Number(startDate)) / msInDay);
   }
-
-
 }
+
+
+
+
+
