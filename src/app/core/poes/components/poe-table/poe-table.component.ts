@@ -27,4 +27,6 @@ export class PoeTableComponent implements OnInit {
     console.log(`L'utilisateur souhaite modifier ${poe.getTitle()}`);
   }
 
+  
+
 }

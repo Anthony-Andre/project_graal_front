@@ -28,7 +28,7 @@ export class PoeService {
             poe.setTitle(inputPoe.title);
             poe.setBeginDate(inputPoe.beginDate);
             poe.setEndDate(inputPoe.endDate);
-            poe.setPoeType(inputPoe.poeType);
+            poe.setPoeType(inputPoe.type);
             return poe;
           })
         })
@@ -57,7 +57,7 @@ export class PoeService {
           poe.setTitle(anyPoe.title);
           poe.setBeginDate(anyPoe.beginDate);
           poe.setEndDate(anyPoe.endDate);
-          poe.setPoeType(anyPoe.poeType);
+          poe.setPoeType(anyPoe.type);
           return stagiaire;
         })
       )
