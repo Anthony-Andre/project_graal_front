@@ -42,6 +42,10 @@ export class AppRoutingModule {
       resolve: {form: PoeResolver}
     },
     {
+      path: 'stagiaire',
+      component: StagiaireFormComponent
+    },
+    {
       path: 'stagiaire/add',
       component: StagiaireFormComponent,
       resolve: { form: StagiaireResolver }
