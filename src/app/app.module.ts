@@ -12,8 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StagiaireFormComponent } from './stagiaires/components/stagiaire-form/stagiaire-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { MatTableModule } from '@angular/material/table';
-import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.component';
+import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.component';
 
 
 @NgModule({
@@ -25,7 +24,7 @@ import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.co
     StagiaireDetailComponent,
     BubbleDirective,
     StagiaireFormComponent,
-    PoeTableComponent
+    PoeFormComponent
   ],
   imports: [
     BrowserModule,
