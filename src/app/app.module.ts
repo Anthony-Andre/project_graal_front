@@ -10,9 +10,9 @@ import { StagiaireDetailComponent } from './stagiaires/components/stagiaire-deta
 import { BubbleDirective } from './shared/directives/bubble.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { StagiaireFormComponent } from './stagiaires/components/stagiaire-form/stagiaire-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -28,8 +28,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
-    MatTableModule
+    SharedModule
   ],
   providers: [
   ],
