@@ -7,7 +7,7 @@ export class PoeDto {
   public title: string = '';
   public beginDate!: Date;   
   public endDate!: Date;
-  public poeType! : PoeType;
+  public type! : PoeType;
 
   public constructor(formValues: any) {
     Object.assign(this, formValues);

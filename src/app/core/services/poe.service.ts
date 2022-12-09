@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { PoeType } from '../enums/poe-type';
 import { Poe } from '../models/poe';
 
 
@@ -28,7 +29,7 @@ export class PoeService {
             poe.setTitle(inputPoe.title);
             poe.setBeginDate(inputPoe.beginDate);
             poe.setEndDate(inputPoe.endDate);
-            poe.setPoeType(inputPoe.poeType);
+            poe.setPoeType(inputPoe.type);
             return poe;
           })
         })
@@ -46,7 +47,7 @@ export class PoeService {
         poe.setTitle(inputPoe.title);
         poe.setBeginDate(new Date(inputPoe.beginDate));
         poe.setEndDate(new Date(inputPoe.endDate));
-        poe.setPoeType(inputPoe.poeType);
+        poe.setPoeType(inputPoe.type);
         console.log(poe);
         return poe;
       })
@@ -75,7 +76,7 @@ export class PoeService {
           poe.setTitle(anyPoe.title);
           poe.setBeginDate(anyPoe.beginDate);
           poe.setEndDate(anyPoe.endDate);
-          poe.setPoeType(anyPoe.poeType);
+          poe.setPoeType(anyPoe.type);
           return stagiaire;
         })
       )
