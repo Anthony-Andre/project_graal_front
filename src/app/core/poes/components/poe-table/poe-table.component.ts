@@ -13,6 +13,7 @@ export class PoeTableComponent implements OnInit {
 
   public poes: Array<Poe> = [];
   public stopDate: String | null = null;
+  public dateOfTheDay: string = new Date().getFullYear() + "," + (new Date().getMonth() + 1) + "," + (new Date().getDate() + 1);
 
   constructor(
     private poeService: PoeService,
@@ -27,8 +28,8 @@ export class PoeTableComponent implements OnInit {
   public onRemove(poe: Poe): void {
     console.log(`L'utilisateur souhaite supprimer ${poe.getTitle()}`);
     this.poeService.delete(poe).subscribe({
-      next: (response: HttpResponse<any>) => {},
-      error: (error: any) => {},
+      next: (response: HttpResponse<any>) => { },
+      error: (error: any) => { },
       complete: () => {
         this.poes.splice(
           this.poes.findIndex((p: Poe) => p.getId() === poe.getId()),
@@ -52,22 +53,22 @@ export class PoeTableComponent implements OnInit {
     if (this.stopDate === null) {
       return true;
     }
-    if (this.stopDate === "oneMonth") {
+    if (this.stopDate === "oneMonth" && (new Date(poe.getEndDate()) < new Date(this.dateOfTheDay))) {
       console.log("Date du jour: ", new Date());
       console.log("Date de la POE : ", poe.getEndDate());
+      console.log(this.dateOfTheDay);
 
-      return this.getDayDiff(new Date(), poe.getEndDate()) > 31 && this.getDayDiff(new Date(), poe.getEndDate()) < 179;
+      return this.getDayDiff(new Date(this.dateOfTheDay), new Date(poe.getEndDate())) > 31 && this.getDayDiff(new Date(this.dateOfTheDay), new Date(poe.getEndDate())) < 179;
     }
     if (this.stopDate === "sixMonth") {
-      return this.getDayDiff(new Date(), poe.getEndDate()) > 180 && this.getDayDiff(new Date(), poe.getEndDate()) < 364;
+      return this.getDayDiff(new Date(this.dateOfTheDay), new Date(poe.getEndDate())) > 180 && this.getDayDiff(new Date(this.dateOfTheDay), new Date(poe.getEndDate())) < 364;
     }
-    return this.getDayDiff(new Date(), poe.getEndDate()) > 365;
+    return this.getDayDiff(new Date(this.dateOfTheDay), new Date(poe.getEndDate())) > 365;
   }
 
   public getDayDiff(startDate: Date, endDate: Date): number {
     const msInDay = 24 * 60 * 60 * 1000;
     return Math.round(Math.abs(Number(endDate) - Number(startDate)) / msInDay);
   }
-
 
 }

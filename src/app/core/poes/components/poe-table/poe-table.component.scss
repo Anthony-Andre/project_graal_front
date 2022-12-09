@@ -40,7 +40,8 @@ tfoot {
   height: 1.5em;
   border-radius: 5em;
   cursor: pointer;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-weight: bold;
 }
 
 // .initials {
@@ -63,3 +64,5 @@ tfoot {
   background-color: #FBAB7E;
   background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 50%, #ffffff 100%);
 }
+
+.buttonChange {}

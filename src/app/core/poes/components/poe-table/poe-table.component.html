@@ -21,8 +21,8 @@
                 <td> {{ poe.getBeginDate() | date: 'dd-MM-YYYY' }} </td>
                 <td> {{ poe.getEndDate() | date: 'dd-MM-YYYY' }} </td>
                 <td> {{ poe.getType() }} </td>
-                <td button type="button" (click)="onUpDate(poe)">M</td>
-                <td button type="button" (click)="onRemove(poe)">X</td>
+                <td><button type="button" class="buttonDelete" (click)="onUpDate(poe)">M</button></td>
+                <td><button type="button" class="buttonDelete" (click)="onRemove(poe)">X</button></td>
             </tr>
         </ng-container>
     </tbody>
