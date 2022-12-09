@@ -43,7 +43,7 @@ export class AppRoutingModule {
     },
     {
       path: 'stagiaire',
-      component: StagiaireFormComponent
+      component: StagiaireTableComponent
     },
     {
       path: 'stagiaire/add',
