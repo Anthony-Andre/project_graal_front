@@ -50,8 +50,8 @@ export class FormBuilderService {
           Validators.required
         ]
       ],
-      poetype: [
-        this.poe.getPoeType,
+      type: [
+        this.poe.getType,
         [
           Validators.required
         ]
