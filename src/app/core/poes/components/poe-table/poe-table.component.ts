@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Poe } from 'src/app/core/models/poe';
+import { PoeService } from 'src/app/core/services/poe.service';
 
 @Component({
   selector: 'app-poe-table',
@@ -6,25 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./poe-table.component.scss']
 })
 export class PoeTableComponent implements OnInit {
-  
-    ELEMENT_DATA: any = [
-      
-    ];
-    constructor() { }
-  
-  
-  
-   ngOnInit(): void {
 
-    }
-  
-  
-  
-   displayedColumns: string[] = ['Type_POE', 'Date_Start', 'Date_End', 'Title_POE'];
-    dataSource = this.ELEMENT_DATA;
-  
-  
-  
+  public poes: Array<Poe> = [];
+
+  constructor(private poeService: PoeService) { } 
+
+  ngOnInit(): void {
+    this.poeService.findAll().subscribe((poes: Poe[]) => {
+      this.poes = poes;
+    })
   }
 
 }
