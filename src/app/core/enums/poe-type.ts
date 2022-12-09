@@ -1,3 +1,4 @@
 export enum PoeType {
-    POEI, POEC
+   POEI , 
+   POEC 
 }
