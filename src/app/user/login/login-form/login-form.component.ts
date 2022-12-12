@@ -34,4 +34,5 @@ public loginForm!: FormGroup;
     })
   }
 
+  public onLogin(): void {}
 }
