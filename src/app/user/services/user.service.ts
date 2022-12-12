@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { UserDto } from '../dto/user-dto';
 import { User } from '../models/user';
 
@@ -23,19 +24,24 @@ const users: UserDto[] = [
 export class UserService {
 
   private _user: User | null = null;
+  public hasUser$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   public login(formData: any): Observable<boolean> {
       const userIndex: number = users.findIndex((user: UserDto) =>
       user.login === formData.userLogin && user.password === formData.userPassword);
       if (userIndex === -1) {
+        this.hasUser$.next(false); // Notify subscribers of a new value
         return of(false);
       } else { // so we got a user
         this._user = new User();
         this._user.id = users[userIndex].id!;
         this._user.login = users[userIndex].login;
 
+        this.hasUser$.next(true);
         return of(true);
       }
 
@@ -50,9 +56,13 @@ export class UserService {
     // return of(found)
   }
 
-  public logout(): void {}
+  public logout(): void {
+    this._user = null;
+    this.router.navigate(['/', 'login']);
+    this.hasUser$.next(false);
+  }
 
-  public hasUser(): boolean {
-    return this._user !== null;
+  public hasUser(): BehaviorSubject<boolean> {
+    return this.hasUser$;
   }
 }

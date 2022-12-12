@@ -1,6 +1,22 @@
-<h1 (click)="toggleTitle()">
-  {{ title }}
-</h1>
+<div>
+  <h1 (click)="toggleTitle()">
+    {{ title }}
+    <nav>
+      <ul>
+        <li>
+          <a [routerLink]="['/', 'home']">Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['/', 'stagiaire']">Stagiaire List</a>
+        </li>
+        <li>
+          <a *ngIf="!hasUser" [routerLink]="['/', 'login']">Login</a>
+          <a *ngIf="hasUser" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </h1>
+</div>
 
 <!-- Etagère à routes : C'est là qu'Angular charge les composants routés -->
 
