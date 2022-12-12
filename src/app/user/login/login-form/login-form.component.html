@@ -3,7 +3,7 @@
   <div class="field-control">
 
     <mat-form-field>
-      <input matInput formControlName="userLogin" placeholder="Your login is required">
+      <input matInput formControlName="userLogin" placeholder="Login">
       <mat-error *ngIf="loginForm.get('userLogin')!.errors && loginForm.get('userLogin')!.touched"></mat-error>
     </mat-form-field>
 
@@ -12,9 +12,15 @@
   <div class="field-control">
 
     <mat-form-field>
-      <input matInput formControlName="userPassword" placeholder="Your password is required" type="password">
+      <input matInput formControlName="userPassword" placeholder="Your password" type="password">
       <mat-error *ngIf="loginForm.get('userPassword')!.errors && loginForm.get('userPassword')!.touched"></mat-error>
     </mat-form-field>
+
+  </div>
+
+  <div class="field-control">
+
+    <mat-slide-toggle formControlName="stayConnected"></mat-slide-toggle>
 
   </div>
 
