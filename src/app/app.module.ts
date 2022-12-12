@@ -16,6 +16,7 @@ import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.compo
 import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.component';
 import { PoeFilterComponent } from './core/poes/components/poe-filter/poe-filter.component';
 import { LoginFormComponent } from './user/login/login-form/login-form.component';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LoginFormComponent } from './user/login/login-form/login-form.component
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    UserModule
   ],
   providers: [
   ],
