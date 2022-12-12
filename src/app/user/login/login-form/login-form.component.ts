@@ -27,6 +27,9 @@ public loginForm!: FormGroup;
         [
           Validators.required
         ]
+      ],
+      stayConnected: [
+        false
       ]
     })
   }
