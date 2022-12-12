@@ -8,6 +8,7 @@ import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.co
 import { StagiaireResolver } from './stagiaires/resolvers/stagiaire.resolver';
 import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.component';
 import { PoeResolver } from './core/resolvers/poe.resolver';
+import { LoginFormComponent } from './user/login/login-form/login-form.component';
 
 const routes: Routes = [];
 
@@ -20,8 +21,12 @@ export class AppRoutingModule {
   public static routes: Routes = [
     {
       path: '',
-      redirectTo: 'home', // Redirection vers un autre chemin, ici 'home' 
+      redirectTo: 'login', // Redirection vers un autre chemin, ici 'login' 
       pathMatch: 'full'
+    },
+    {
+      path: 'login',
+      component: LoginFormComponent
     },
     {
       path: 'home',
@@ -39,7 +44,7 @@ export class AppRoutingModule {
     {
       path: 'poe/add',
       component: PoeFormComponent,
-      resolve: {form: PoeResolver}
+      resolve: { form: PoeResolver }
     },
     {
       path: 'stagiaire',

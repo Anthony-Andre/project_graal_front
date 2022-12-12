@@ -1,1 +1,27 @@
-<p>login-form works!</p>
+<form [formGroup]="loginForm">
+
+  <div class="field-control">
+
+    <mat-form-field>
+      <input matInput formControlName="userLogin" placeholder="Your login is required">
+      <mat-error *ngIf="loginForm.get('userLogin')!.errors && loginForm.get('userLogin')!.touched"></mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div class="field-control">
+
+    <mat-form-field>
+      <input matInput formControlName="userPassword" placeholder="Your password is required" type="password">
+      <mat-error *ngIf="loginForm.get('userPassword')!.errors && loginForm.get('userPassword')!.touched"></mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div class="button">
+
+    <button mat-raised-button color="primary" [disabled]="loginForm.invalid"> Login </button>
+
+  </div>
+
+</form>

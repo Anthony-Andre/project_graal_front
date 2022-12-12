@@ -23,7 +23,7 @@ body {
   margin: 0;
   background-color: #0093E9;
   background-image: linear-gradient(114deg, #0093E9 0%, #80D0C7 100%);
-  font-family: $main-font;
+  font-family: $main-font !important;
 }
 
 .mainButton {
@@ -133,6 +133,11 @@ form input {
   border-top: none;
   border-left: none;
   border-right: none;
+  border-bottom: solid black !important;
+}
+
+form input::placeholder {
+  color: $main-color !important;
 }
 
 form div {
@@ -180,5 +185,13 @@ form div {
 .link-button:hover {
   border-color: #fff;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  //  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
