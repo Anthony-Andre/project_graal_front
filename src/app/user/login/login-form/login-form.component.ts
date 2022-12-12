@@ -22,7 +22,7 @@ export class LoginFormComponent implements OnInit {
           Validators.required
         ]
       ],
-      userPasword: [
+      userPassword: [
         '',
         [
           Validators.required
@@ -33,5 +33,10 @@ export class LoginFormComponent implements OnInit {
       ]
     })
   }
+
+  public onLogin() {
+
+  }
+
 
 }
