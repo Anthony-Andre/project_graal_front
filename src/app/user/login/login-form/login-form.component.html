@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)="onLogin">
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <div class="field-control">
         <mat-form-field>
             <input matInput formControlName="userLogin" placeholder="Your login...">
@@ -9,9 +9,9 @@
 
     <div class="field-control">
         <mat-form-field>
-            <input matInput formControlName="userPassword" placeholder="Your login..." type="password">
+            <input matInput formControlName="userPassword" placeholder="Your password.." type="password">
             <mat-error *ngIf="loginForm.get('userPassword')!.errors && loginForm.get('userPassword')!.touched"></mat-error>
-            Your login is required
+            Your password is required
         </mat-form-field>
     </div>
 
