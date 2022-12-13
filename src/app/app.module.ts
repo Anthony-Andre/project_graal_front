@@ -16,12 +16,7 @@ import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.co
 import { PoeFilterComponent } from './core/poes/components/poe-filter/poe-filter.component';
 import { LoginFormComponent } from './user/login/login-form/login-form.component';
 import { UserModule } from './user/user.module';
-
-function initializeApp(): Observable<any> {
-  return new Observable((resolve, reject) => {
-    resolve();
-  });
-}
+import { initializeApp } from './core/services/app-initializer.service';
 
 @NgModule({
   declarations: [
