@@ -8,6 +8,9 @@ import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.co
 import { StagiaireResolver } from './stagiaires/resolvers/stagiaire.resolver';
 import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.component';
 import { PoeResolver } from './core/resolvers/poe.resolver';
+import { LoginFormComponent } from './user/login/login-form/login-form.component';
+import { NoUserGuard } from './user/guards/no-user.guard';
+import { HasUserGuard } from './user/guards/has-user.guard';
 
 const routes: Routes = [];
 
@@ -20,44 +23,75 @@ export class AppRoutingModule {
   public static routes: Routes = [
     {
       path: '',
-      redirectTo: 'home', // Redirection vers un autre chemin, ici 'home' 
+      redirectTo: 'login', // Redirection vers un autre chemin, ici 'home' 
       pathMatch: 'full'
     },
     {
+      path: 'login',
+      component: LoginFormComponent,
+      canActivate: [
+        NoUserGuard
+      ]
+    },
+    {
       path: 'home',
-      component: PoeTableComponent
+      component: PoeTableComponent,
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'poe',
-      component: PoeTableComponent
+      component: PoeTableComponent,
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'poe/update/:id',
       component: PoeFormComponent,
-      resolve: { form: PoeResolver }
+      resolve: { form: PoeResolver },
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'poe/add',
       component: PoeFormComponent,
-      resolve: {form: PoeResolver}
+      resolve: {form: PoeResolver},
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'stagiaire',
-      component: StagiaireTableComponent
+      component: StagiaireTableComponent,
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'stagiaire/add',
       component: StagiaireFormComponent,
-      resolve: { form: StagiaireResolver }
+      resolve: { form: StagiaireResolver },
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'stagiaire/:id',
-      component: StagiaireDetailComponent
+      component: StagiaireDetailComponent,
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'stagiaire/update/:id',
       component: StagiaireFormComponent,
-      resolve: { form: StagiaireResolver }
+      resolve: { form: StagiaireResolver },
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: '**', // Wild card (Redirige vers le home si l'url n'existe pas) - Toujours mettre en dernier
