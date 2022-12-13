@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { StagiaireDetailComponent } from 'src/app/stagiaires/components/stagiaire-detail/stagiaire-detail.component';
 import { StagiaireDto } from 'src/app/stagiaires/dto/stagiaire-dto';
 
+
+//service
 @Injectable({
   providedIn: 'root'
 })
