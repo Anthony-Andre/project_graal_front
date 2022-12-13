@@ -31,6 +31,24 @@ body {
   margin: 0.5em;
 }
 
+/************************* Navbar:  *************************/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar li {
+  width: 5em;
+  height: 1em;
+  background-color: $main-color;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+}
+
 // Affichage d'une carte de stagiaire : // 
 
 .zoom-in {
@@ -161,6 +179,12 @@ form div {
 
 .mat-raised-button {
   margin-top: 1.75em !important;
+}
+
+button,
+h1,
+span {
+  font-family: $main-font !important;
 }
 
 //** Style d'un formulaire (Carte) avec Material : **// 

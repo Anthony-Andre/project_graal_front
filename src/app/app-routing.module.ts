@@ -9,6 +9,7 @@ import { StagiaireResolver } from './stagiaires/resolvers/stagiaire.resolver';
 import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.component';
 import { PoeResolver } from './core/resolvers/poe.resolver';
 import { LoginFormComponent } from './user/login/login-form/login-form.component';
+import { NoUserGuard } from './user/guards/no-user.guard';
 
 const routes: Routes = [];
 
@@ -26,7 +27,10 @@ export class AppRoutingModule {
     },
     {
       path: 'login',
-      component: LoginFormComponent
+      component: LoginFormComponent,
+      canActivate: [
+        NoUserGuard
+      ]
     },
     {
       path: 'home',
