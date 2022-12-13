@@ -23,12 +23,30 @@ body {
   margin: 0;
   background-color: #0093E9;
   background-image: linear-gradient(114deg, #0093E9 0%, #80D0C7 100%);
-  font-family: $main-font;
+  font-family: $main-font !important;
 }
 
 .mainButton {
   padding: 0.5em;
   margin: 0.5em;
+}
+
+/************************* Navbar:  *************************/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar li {
+  width: 5em;
+  height: 1em;
+  background-color: $main-color;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
 }
 
 // Affichage d'une carte de stagiaire : // 
@@ -135,6 +153,10 @@ form input {
   border-right: none;
 }
 
+form input::placeholder {
+  color: $main-color !important;
+}
+
 form div {
   display: flex;
   flex-direction: column;
@@ -156,7 +178,13 @@ form div {
 }
 
 .mat-raised-button {
-  margin-top: 1.75em;
+  margin-top: 1.75em !important;
+}
+
+button,
+h1,
+span {
+  font-family: $main-font !important;
 }
 
 //** Style d'un formulaire (Carte) avec Material : **// 
@@ -180,5 +208,13 @@ form div {
 .link-button:hover {
   border-color: #fff;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  //  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
