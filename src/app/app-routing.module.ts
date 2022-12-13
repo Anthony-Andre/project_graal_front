@@ -10,6 +10,7 @@ import { PoeFormComponent } from './core/poes/components/poe-form/poe-form.compo
 import { PoeResolver } from './core/resolvers/poe.resolver';
 import { LoginFormComponent } from './user/login/login-form/login-form.component';
 import { NoUserGuard } from './user/guards/no-user.guard';
+import { HasUserGuard } from './user/guards/has-user.guard';
 
 const routes: Routes = [];
 
@@ -34,39 +35,63 @@ export class AppRoutingModule {
     },
     {
       path: 'home',
-      component: PoeTableComponent
+      component: PoeTableComponent,
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'poe',
-      component: PoeTableComponent
+      component: PoeTableComponent,
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'poe/update/:id',
       component: PoeFormComponent,
-      resolve: { form: PoeResolver }
+      resolve: { form: PoeResolver },
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'poe/add',
       component: PoeFormComponent,
-      resolve: {form: PoeResolver}
+      resolve: {form: PoeResolver},
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'stagiaire',
-      component: StagiaireTableComponent
+      component: StagiaireTableComponent,
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'stagiaire/add',
       component: StagiaireFormComponent,
-      resolve: { form: StagiaireResolver }
+      resolve: { form: StagiaireResolver },
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'stagiaire/:id',
-      component: StagiaireDetailComponent
+      component: StagiaireDetailComponent,
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: 'stagiaire/update/:id',
       component: StagiaireFormComponent,
-      resolve: { form: StagiaireResolver }
+      resolve: { form: StagiaireResolver },
+      canActivate: [
+        HasUserGuard
+      ]
     },
     {
       path: '**', // Wild card (Redirige vers le home si l'url n'existe pas) - Toujours mettre en dernier
