@@ -1,33 +1,6 @@
 $title-background-color: rgb(212, 145, 62); // Background color
 $std-color : rgb(255, 255, 255); // Front color 
 
-h1 {
-  background-color: $title-background-color;
-  color: $std-color;
-  line-height: 2.5em;
-  vertical-align: middle;
-  text-align: center;
-}
-
-ul {
-  list-style-type: none;
-  margin: auto;
-  margin-top: 2em;
-  width: 22em;
-
-  li {
-    border: solid 1px $title-background-color;
-    border-radius: 0.5em;
-    margin-bottom: 0.5em;
-    padding: 1em;
-    text-align: center;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
 button {
   display: block;
   margin: auto;

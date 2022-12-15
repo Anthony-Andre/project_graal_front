@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,15 @@ import { PoeTableComponent } from './core/poes/components/poe-table/poe-table.co
 import { PoeFilterComponent } from './core/poes/components/poe-filter/poe-filter.component';
 import { LoginFormComponent } from './user/login/login-form/login-form.component';
 import { UserModule } from './user/user.module';
+import { AppInitService } from './app-init.service';
+import { LocalStrategy } from './core/strategies/storage/local-strategy';
+import { UserService } from './user/services/user.service';
+
+export function initializeApp1(appInitService: AppInitService) {
+  return (): Promise<any> => {
+    return appInitService.init();
+  }
+}
 
 @NgModule({
   declarations: [
@@ -39,7 +48,12 @@ import { UserModule } from './user/user.module';
     UserModule
   ],
   providers: [
+    AppInitService,
+    { provide: APP_INITIALIZER, useFactory: initializeApp1, deps: [AppInitService], multi: true },
+    LocalStrategy,
+    UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
