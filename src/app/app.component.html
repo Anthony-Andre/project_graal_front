@@ -1,23 +1,23 @@
-<div>
-  <a [routerLink]="['/', 'home']"><i class="fa-solid fa-house"></i></a>
+<header>
+  <a id="home" [routerLink]="['/', 'home']"><i class="fa-solid fa-house"></i></a>
   <h1 (click)="toggleTitle()">
     {{ title }}
   </h1>
-  <nav>
-    <ul class="navbar">
-      <li>
-        <a [routerLink]="['/', 'home']">Home</a>
-      </li>
-      <li>
-        <a href="#">POE List</a>
-      </li>
-      <li>
-        <a *ngIf="!hasUser" [routerLink]="['/', 'login']">Login</a>
-        <a *ngIf="hasUser" href="" (click)="onLogout()">Logout</a>
-      </li>
-    </ul>
-  </nav>
-</div>
+
+  <ul class="navbar">
+    <li>
+      <a href="#">POE List</a>
+    </li>
+    <li>
+      <a [routerLink]="['/', 'stagiaire']">Trainees</a>
+    </li>
+
+    <li>
+      <a *ngIf="!hasUser" [routerLink]="['/', 'login']">Login</a>
+      <a *ngIf="hasUser" href="" (click)="onLogout()"><i class="fa-solid fa-person-through-window"></i></a>
+    </li>
+  </ul>
+</header>
 
 <!-- Etagère à routes : C'est là qu'Angular charge les composants routés -->
 

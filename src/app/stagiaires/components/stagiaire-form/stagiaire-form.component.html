@@ -2,7 +2,7 @@
 
     <form [formGroup]="stagiaireForm" (ngSubmit)="onSubmit()">
 
-        <h1>Ajouter un stagiaire</h1>
+        <h1 formControlName="title">Ajouter un stagiaire</h1>
 
         <label for="lastName">Veuillez saisir le nom du stagiaire:</label>
         <input id="lastName" type="text" placeholder="Nom" formControlName="lastname">

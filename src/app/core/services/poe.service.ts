@@ -94,8 +94,8 @@ export class PoeService {
           const poe: Poe = new Poe();
           poe.setId(anyPoe.id!);
           poe.setTitle(anyPoe.title);
-          poe.setBeginDate(anyPoe.beginDate);
-          poe.setEndDate(anyPoe.endDate);
+          poe.setBeginDate(new Date(anyPoe.beginDate));
+          poe.setEndDate(new Date(anyPoe.endDate));
           poe.setPoeType(anyPoe.type);
           return poe;
         })
