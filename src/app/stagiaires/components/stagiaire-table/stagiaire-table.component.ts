@@ -16,7 +16,6 @@ export class StagiaireTableComponent implements OnInit {
 
   public stagiaires: Array<Stagiaire> = [];
   public stopDate: Date | null = new Date(1990, 11, 31);
-  public stagiairesBeforeStopDate: Number = this.stagiaireService.getVisibleStagiaireNumber(this.stopDate);
   public stagiaire: Stagiaire | null = null;
   public visibility: Boolean = true;
   public bubbleConfig: any = {
@@ -45,6 +44,7 @@ export class StagiaireTableComponent implements OnInit {
     this.stagiaireService.findAll().subscribe((stagiaires: Stagiaire[]) => {
       this.stagiaires = stagiaires;
     })
+
     this.isDetailHidden$ = this.handleDetailService.isDetailHidden;
   }
 
@@ -106,6 +106,8 @@ export class StagiaireTableComponent implements OnInit {
   }
 
   public getVisibleStagiaire(): number {
+    console.log("date:", this.stopDate)
+    console.log("nombre:", this.stagiaireService.getStagiaireBornBefore(this.stopDate).length)
     return this.stagiaireService.getVisibleStagiaireNumber(
       this.stopDate);
   }

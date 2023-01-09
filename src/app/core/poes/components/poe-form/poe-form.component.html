@@ -8,10 +8,19 @@
         <label for="title">Veuillez saisir le nom d'une Poe:</label>
         <input id="title" type="text" placeholder="title" formControlName="title">
 
-        <!-- TODO : en dessous, remplacer par un menu déroulant -->
+        <!-- TODO : en dessous, remplacer par un menu déroulant 
 
         <label for="type">Type de Poe:</label>
         <input id="type" type="text" placeholder="type" formControlName="type">
+
+        -->
+
+        <select name="poeType" id="type" placeholder="type" formControlName="type">
+            <option value="POEI">POEI</option>
+            <option value="POEC">POEC</option>
+        </select>
+
+
 
         <div id="beginDate">
             <mat-form-field appearance="fill">
@@ -35,7 +44,7 @@
 
 
         <button [disabled]="!poeForm.valid">{{addMode ? 'Ajouter' : 'Modifier'}}</button>
-        
+
 
         <button type="button" (click)="goHome()">Retour à la maison</button>
 

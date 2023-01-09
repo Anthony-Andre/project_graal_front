@@ -188,13 +188,16 @@ form {
 }
 
 form label,
-form button {
+form button,
+form select,
+#beginDate {
   margin-top: .75em;
   font-weight: bold;
 }
 
 form input,
-form button {
+form button,
+form select {
   height: 2.5em;
   text-align: center;
   font-family: $main-font;

@@ -1,5 +1,15 @@
 <app-poe-filter [filterDate]="stopDate" (onChangeFilter)="filterChanged($event)"></app-poe-filter>
 
+<div *ngIf="isSignedin">
+    <p>Welcome back, {{ signedinUser }}!</p>
+
+    <!--   <div *ngFor="let greet of greeting">
+        {{greet}}
+    </div>
+
+    -->
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -10,6 +20,8 @@
             <th>Type</th>
             <th>Modify</th>
             <th>Delete</th>
+            <th>Nombre de stagiaires</th>
+            <th>Stagiaires</th>
         </tr>
     </thead>
 
@@ -23,9 +35,30 @@
                 <td> {{ poe.getType() }} </td>
                 <td><button type="button" class="buttonDelete" (click)="onUpDate(poe)">M</button></td>
                 <td><button type="button" class="buttonDelete" (click)="onRemove(poe)">X</button></td>
+                <td>{{poe.getTrainees().length}}</td>
+                <td>
+                    <li *ngFor="let stagiaire of poe.getTrainees()">
+                        <ul>{{stagiaire}}</ul>
+                    </li>
+                </td>
             </tr>
         </ng-container>
     </tbody>
 </table>
 
 <a class="link-button" [routerLink]="['/','poe','add']">Ajouter une poe</a>
+
+<table class="stats">
+
+
+    <tr>
+        <th>Statistiques :</th>
+    </tr>
+
+    <tr>Nombre total de Poe : {{poes.length}}</tr>
+
+    <tr>Nombre total de stagiaires : {{tousLesStagiaires.length}}</tr>
+
+    <p></p>
+
+</table>

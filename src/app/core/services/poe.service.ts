@@ -12,7 +12,7 @@ import { PoeDto } from '../poes/dto/poe-dto';
 export class PoeService {
 
   private poes: Array<Poe> = [];
-  private controllerBaseUrl: string = `${environment.apiBaseUrl}/poe`;
+  private controllerBaseUrl: string = `${environment.apiBaseUrl}/poe/fullDetails`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -30,6 +30,7 @@ export class PoeService {
             poe.setBeginDate(inputPoe.beginDate);
             poe.setEndDate(inputPoe.endDate);
             poe.setPoeType(inputPoe.type);
+            poe.setTrainees(inputPoe.trainees);
             return poe;
           })
         })

@@ -11,6 +11,7 @@ import { PoeResolver } from './core/resolvers/poe.resolver';
 import { LoginFormComponent } from './user/login/login-form/login-form.component';
 import { NoUserGuard } from './user/guards/no-user.guard';
 import { HasUserGuard } from './user/guards/has-user.guard';
+import { UserFormComponent } from './user/components/user-form/user-form.component';
 
 const routes: Routes = [];
 
@@ -23,9 +24,10 @@ export class AppRoutingModule {
   public static routes: Routes = [
     {
       path: '',
-      redirectTo: 'login', // Redirection vers un autre chemin, ici 'login' 
+      redirectTo: 'login', // Redirection vers un autre chemin, ici 'signin' 
       pathMatch: 'full'
     },
+    { path: 'signup', component: UserFormComponent },
     {
       path: 'login',
       component: LoginFormComponent,

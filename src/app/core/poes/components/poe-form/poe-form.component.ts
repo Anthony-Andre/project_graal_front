@@ -16,6 +16,7 @@ export class PoeFormComponent implements OnInit {
 
   poe: Poe = new Poe();
   poeToUpdate: Poe = new Poe();
+  public poes: Array<Poe> = [];
 
   poeForm!: FormGroup;
 
@@ -30,12 +31,17 @@ export class PoeFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     const data: any = this.route.snapshot.data;
     console.log(`${data.form instanceof FormGroup ? 'OK' : 'KO'}`);
     this.poeForm = data.form;
 
-    if (this.poeForm.value.id !== 0) {
+    this.poeService.findAll().subscribe((poes: Poe[]) => {
+      this.poes = poes;
+    })
+
+
+    if (this.poeForm.value.id !== 0 && this.poeForm.value.id !== undefined) {
       this.addMode = false;
       console.log('id =', this.poeForm.value.id);
     } else {
@@ -44,35 +50,35 @@ export class PoeFormComponent implements OnInit {
     }
   }
 
-    /**
-   * Returns a list of form controls
-   * @usage In template : c['lastname']
-   * instead of poeForm.controls['lastname'];
-   */
+  /**
+ * Returns a list of form controls
+ * @usage In template : c['lastname']
+ * instead of poeForm.controls['lastname'];
+ */
 
-    public get c(): { [key: string]: AbstractControl } {
-      return this.poeForm.controls;
-    }
-  
-    onSubmit() {
-      console.log('Delegate add poe: ', this.poeForm.value);
+  public get c(): { [key: string]: AbstractControl } {
+    return this.poeForm.controls;
+  }
 
-      const dto: PoeDto = new PoeDto(this.poeForm.value);
-  
-      let subscription: Observable<any>;
-  
-      if (this.addMode) {
-        subscription = this.poeService.addPoe(dto); 
-      } else {
-        subscription = this.poeService.update(this.poeForm.value);
-      }
-  
-      subscription.subscribe(() => this.goHome())
+  onSubmit() {
+    console.log('Delegate add poe: ', this.poeForm.value);
+
+    const dto: PoeDto = new PoeDto(this.poeForm.value);
+
+    let subscription: Observable<any>;
+
+    if (this.addMode) {
+      subscription = this.poeService.addPoe(dto);
+    } else {
+      subscription = this.poeService.update(this.poeForm.value);
     }
-  
-    public goHome(): void {
-      this.router.navigate(['/', 'home'])
-    }
+
+    subscription.subscribe(() => this.goHome())
+  }
+
+  public goHome(): void {
+    this.router.navigate(['/', 'home'])
+  }
 
 }
 

@@ -31,11 +31,12 @@ export class StagiaireService {
           return stagiaires.map((inputStagiaire: any) => {
             const stagiaire: Stagiaire = new Stagiaire();
             stagiaire.setId(inputStagiaire.id);
-            stagiaire.setLastName(inputStagiaire.lastName);
-            stagiaire.setFirstName(inputStagiaire.firstName);
+            stagiaire.setLastName(inputStagiaire.lastname);
+            stagiaire.setFirstName(inputStagiaire.firstname);
             stagiaire.setEmail(inputStagiaire.email);
             stagiaire.setPhoneNumber(inputStagiaire.phoneNumber);
-            stagiaire.setBirthDate(new Date(inputStagiaire.birthDate));
+            stagiaire.setBirthDate(new Date(inputStagiaire.birthdate));
+            console.log(stagiaire);
             return stagiaire;
           })
         })
@@ -52,11 +53,11 @@ export class StagiaireService {
       map((inputStagiaire: any) => {
         const stagiaire: Stagiaire = new Stagiaire();
         stagiaire.setId(inputStagiaire.id);
-        stagiaire.setLastName(inputStagiaire.lastName);
-        stagiaire.setFirstName(inputStagiaire.firstName);
+        stagiaire.setLastName(inputStagiaire.lastname);
+        stagiaire.setFirstName(inputStagiaire.firstname);
         stagiaire.setEmail(inputStagiaire.email);
         stagiaire.setPhoneNumber(inputStagiaire.phoneNumber);
-        stagiaire.setBirthDate(new Date(inputStagiaire.birthDate));
+        stagiaire.setBirthDate(new Date(inputStagiaire.birthdate));
         console.log(stagiaire);
         return stagiaire;
       })
@@ -139,7 +140,5 @@ export class StagiaireService {
       this.stagiaires.filter((obj: Stagiaire) => obj.getBirthDate() > date).length :
       this.stagiaires.filter((obj: Stagiaire) => obj.getBirthDate() < date).length;
   }
-
-
 
 }

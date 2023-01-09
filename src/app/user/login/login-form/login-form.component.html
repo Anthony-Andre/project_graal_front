@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+<!-- <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
   <h1>Connexion</h1>
 
@@ -33,3 +33,46 @@
   </div>
 
 </form>
+
+<form name='signinForm' (submit)="doSignin()">
+
+  <h1>Connexion</h1>
+  <div style=" color : red" *ngIf='error'>{{error}}</div>
+
+  <div class="field-control">
+
+    <input type='text' name='username' [(ngModel)]="username" placeholder="Login">
+
+    <input type='password' name='password' placeholder="Password" [(ngModel)]="password" />
+
+    <input class="link-button" name="submit" type="submit" value="Connexion" />
+
+    <label for="signup">Don't have account?</label>
+    <a name="signup" href="/signup" routerLink="/signup">Signup</a>
+
+  </div>
+
+</form>
+
+-->
+
+<div class="form" id="signin-box">
+  <h1>Connexion</h1>
+  <div style="color : red" *ngIf='error'>{{error}}</div>
+  <form name='signinForm' (submit)="doSignin()">
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td><input type='text' name='username' [(ngModel)]="username"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type='password' name='password' [(ngModel)]="password" /></td>
+      </tr>
+      <tr>
+        <td><input class="link-button" name="submit" type="submit" value="Signin" /></td>
+        <td>Don't have account? <a href="/signup" routerLink="/signup">Signup</a></td>
+      </tr>
+    </table>
+  </form>
+</div>

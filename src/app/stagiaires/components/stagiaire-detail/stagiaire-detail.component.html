@@ -7,7 +7,8 @@
         <div appBubble [config]="bubbleConfig" class="initials">{{stagiaire | initials : {firstNameFirst: true, full:
           true} }}</div>
         <h1>Fiche stagiaire</h1>
-        <button type="button" class="link-button" [routerLink]="['/']" (click)="closeStagiaireCard()">X</button>
+        <button type="button" class="link-button" [routerLink]="['/stagiaire']"
+          (click)="closeStagiaireCard()">X</button>
       </div>
 
       <div class="infosCard">

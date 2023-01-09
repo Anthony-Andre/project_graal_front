@@ -7,7 +7,7 @@ import { Stagiaire } from 'src/app/core/models/stagiaire';
 import { StagiaireService } from 'src/app/core/services/stagiaire.service';
 import { StagiaireDto } from '../../dto/stagiaire-dto';
 import { FormBuilderService } from '../../services/form-builder.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-stagiaire-form',
   templateUrl: './stagiaire-form.component.html',
@@ -29,7 +29,8 @@ export class StagiaireFormComponent implements OnInit {
     private stagiaireService: StagiaireService,
     private formBuilderService: FormBuilderService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class StagiaireFormComponent implements OnInit {
     console.log(`${data.form instanceof FormGroup ? 'OK' : 'KO'}`);
     this.stagiaireForm = data.form;
 
-    if (this.stagiaireForm.value.id !== 0) {
+    if (this.stagiaireForm.value.id !== 0 && this.stagiaireForm.value.id !== undefined) {
       this.addMode = false;
       console.log('id =', this.stagiaireForm.value.id);
     } else {
@@ -46,7 +47,7 @@ export class StagiaireFormComponent implements OnInit {
       console.log('id =', this.stagiaireForm.value.id);
     }
 
-    console.log("Salut les petits potes")
+    console.log("addMode:", this.addMode);
 
 
 
@@ -93,7 +94,8 @@ export class StagiaireFormComponent implements OnInit {
   }
 
   public goHome(): void {
-    this.router.navigate(['/', 'home'])
+    // this.router.navigate(['/', 'home'])
+    this._location.back();
   }
 
 }

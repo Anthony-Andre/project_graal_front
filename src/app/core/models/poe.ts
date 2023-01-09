@@ -1,4 +1,5 @@
 import { PoeType } from "../enums/poe-type";
+import { Stagiaire } from "./stagiaire";
 
 export class Poe {
     private id: number = 0;
@@ -6,12 +7,13 @@ export class Poe {
     private beginDate!: Date;
     private endDate!: Date;
     private type!: PoeType;
+    private trainees: Array<Stagiaire> = [];
 
 
     public getId(): number {
         return this.id;
     }
-    
+
     public setId(id: number): void {
         this.id = id;
     }
@@ -47,5 +49,15 @@ export class Poe {
     public setPoeType(type: PoeType): void {
         this.type = type;
     }
+
+    public getTrainees(): Array<Stagiaire> {
+        return this.trainees;
+    }
+
+    public setTrainees(trainees: Array<Stagiaire>): void {
+        this.trainees = trainees;
+    }
+
 }
+
 

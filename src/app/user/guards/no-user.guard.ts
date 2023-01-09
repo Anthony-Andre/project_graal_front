@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth-service.service';
 import { UserService } from '../services/user.service';
 
 @Injectable({
@@ -10,7 +11,8 @@ export class NoUserGuard implements CanActivate {
 
   public constructor(
     private userService: UserService,
-    private route: Router
+    private route: Router,
+    private authService: AuthService
   ) { }
 
 
@@ -21,7 +23,7 @@ export class NoUserGuard implements CanActivate {
 
     // Use service method hasUser()  
 
-    if (this.userService.hasUser().getValue()) {
+    if (this.authService.isUserSignedin()) {
       this.route.navigate(['/', 'home']);
       return false; // La route ne doit pas être activée
     }

@@ -2,7 +2,7 @@
 
     <form [formGroup]="stagiaireForm" (ngSubmit)="onSubmit()">
 
-        <h1 formControlName="title">Ajouter un stagiaire</h1>
+        <h1>{{addMode ? 'Ajouter un Stagiaire' : 'Modifier le Stagiaire'}}</h1>
 
         <label for="lastName">Veuillez saisir le nom du stagiaire:</label>
         <input id="lastName" type="text" placeholder="Nom" formControlName="lastname">
@@ -13,7 +13,8 @@
         <!-- 
         <label for="birthdate">Veuillez saisir la date de naissance du stagiaire:</label>
         <input type="date" name="birthdate" id="" birthdate formControlName="birthdate">
-        -->
+
+         -->
 
         <div id="birthDate">
             <mat-form-field appearance="fill">
@@ -25,6 +26,7 @@
             </mat-form-field>
         </div>
 
+
         <label for="email">Veuillez saisir l'adresse mail du stagaire:</label>
         <input type="email" name="email" id="email" placeholder="Adresse email" formControlName="email">
 
@@ -32,7 +34,9 @@
         <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="Numéro de téléphone"
             formControlName="phoneNumber">
 
+
         <button [disabled]="!stagiaireForm.valid">{{addMode ? 'Ajouter' : 'Modifier'}}</button>
+
 
         <button type="button" (click)="goHome()">Retour à la maison</button>
 

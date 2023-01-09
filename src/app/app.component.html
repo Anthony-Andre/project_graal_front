@@ -5,16 +5,17 @@
   </h1>
 
   <ul class="navbar">
-    <li>
+    <li *ngIf="hasUser">
       <a href="#">POE List</a>
     </li>
-    <li>
+    <li *ngIf="hasUser">
       <a [routerLink]="['/', 'stagiaire']">Trainees</a>
     </li>
 
     <li>
       <a *ngIf="!hasUser" [routerLink]="['/', 'login']">Login</a>
       <a *ngIf="hasUser" href="" (click)="onLogout()"><i class="fa-solid fa-person-through-window"></i></a>
+
     </li>
   </ul>
 </header>

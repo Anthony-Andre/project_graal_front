@@ -20,6 +20,9 @@ import { UserModule } from './user/user.module';
 import { AppInitService } from './app-init.service';
 import { LocalStrategy } from './core/strategies/storage/local-strategy';
 import { UserService } from './user/services/user.service';
+import { FormsModule } from '@angular/forms';
+import { UserFormComponent } from './user/components/user-form/user-form.component';
+import { HttpInterceptorService } from './user/services/http-interceptor.service';
 
 export function initializeApp1(appInitService: AppInitService) {
   return (): Promise<any> => {
@@ -51,7 +54,8 @@ export function initializeApp1(appInitService: AppInitService) {
     AppInitService,
     { provide: APP_INITIALIZER, useFactory: initializeApp1, deps: [AppInitService], multi: true },
     LocalStrategy,
-    UserService
+    UserService,
+    HttpInterceptorService
   ],
   bootstrap: [AppComponent],
 
